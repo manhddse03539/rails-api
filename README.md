@@ -17,3 +17,6 @@
     rails c
     - [name].create!(param1: value, param2: value)
     - curl http://localhost:3000/[routeName]
+8. Building a post endpoint
+    - rails routes | grep [route name]
+    - example : curl --header "Content-Type: application/json" --request POST --data '{"autor": "Manh", "title": "Rails Api"}' http://localhost:3000/books -v
