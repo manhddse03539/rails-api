@@ -21,3 +21,9 @@
    - rails routes | grep [route name]
    - example : curl --header "Content-Type: application/json" --request POST --data '{"author": "Manh", "title": "Rails Api"}' http://localhost:3000/books -v
 9. stripe api : https://stripe.com/docs/api
+10. migration reference
+    - rails g migration add*[model1]\_to*[model2] [model1]:references
+    - rails db:migrate
+11. Migration to remove a column
+    - rails g migration remove*[column]\_from*[model] [column]:[columntype]
+    - rails db:migrate
