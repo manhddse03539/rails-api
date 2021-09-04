@@ -19,4 +19,5 @@
    - curl http://localhost:3000/[routeName]
 8. Building a post endpoint
    - rails routes | grep [route name]
-   - example : curl --header "Content-Type: application/json" --request POST --data '{"autor": "Manh", "title": "Rails Api"}' http://localhost:3000/books -v
+   - example : curl --header "Content-Type: application/json" --request POST --data '{"author": "Manh", "title": "Rails Api"}' http://localhost:3000/books -v
+9. stripe api : https://stripe.com/docs/api
