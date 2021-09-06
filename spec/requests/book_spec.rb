@@ -5,10 +5,12 @@ describe "Book Api", type: :request do
     let(:second_author) {FactoryBot.create(:author, first_name:"test2", last_name: "test2", age: 29)}
 
     describe "GET /books" do
-        it 'return all books' do
+        before do
             FactoryBot.create(:book, author:first_author, title: "test1")
             FactoryBot.create(:book, author:second_author, title: "test2")
-    
+        end
+
+        it 'return all books' do
             get '/api/v1/books'
     
             expect(response).to have_http_status(:success)  
@@ -21,6 +23,40 @@ describe "Book Api", type: :request do
                     'author_name' =>  "test1 test1",
                     'author_age' =>  27
                     },
+                    {
+                        'id' =>  2,
+                        'title' =>  "test2",
+                        'author_name' =>  "test2 test2",
+                        'author_age' =>  29
+                    }
+                ]
+            )
+        end
+
+        it 'return a subset of books based on limit' do
+            get '/api/v1/books', params: { limit: 1 }
+    
+            expect(response).to have_http_status(:success)  
+            expect(response_body.size).to eq(1) 
+            expect(response_body).to eq(
+                [
+                    {
+                        'id' =>  1,
+                        'title' =>  "test1",
+                        'author_name' =>  "test1 test1",
+                        'author_age' =>  27
+                    }
+                ]
+            )
+        end
+
+        it 'return a subset of books based on limit and offset' do
+            get '/api/v1/books', params: { limit: 1, offset: 1 }
+    
+            expect(response).to have_http_status(:success)  
+            expect(response_body.size).to eq(1) 
+            expect(response_body).to eq(
+                [
                     {
                         'id' =>  2,
                         'title' =>  "test2",
